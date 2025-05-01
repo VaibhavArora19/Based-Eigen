@@ -1,14 +1,10 @@
-import type React from "react";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
+import { metadata } from "./metadata"; // Import the metadata
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata = {
-  title: "SecureAssets Protocol",
-  description: "Protect your assets with Eigen layer staking technology",
-};
+export { metadata }; // Export it here for Next.js to use
 
 export default function RootLayout({
   children,
