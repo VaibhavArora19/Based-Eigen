@@ -1,0 +1,3 @@
+[submodule "secureassets"]
+	path = secureassets
+	url = https://github.com/Rohanarora17/secureassets.git
