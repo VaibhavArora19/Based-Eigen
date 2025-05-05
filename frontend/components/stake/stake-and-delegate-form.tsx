@@ -70,52 +70,59 @@ export function StakeAndDelegateForm() {
           <div className="space-y-6">
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <Label htmlFor="delegate-amount">Amount to Stake & Delegate</Label>
-                <span className="text-sm text-slate-500">Available: 10.0 {token}</span>
+                <Label htmlFor="delegate-amount" className="text-slate-700 dark:text-slate-300">Amount to Stake & Delegate</Label>
+                <span className="text-sm text-slate-500 dark:text-slate-400">Available: 10.0 {token}</span>
               </div>
               <div className="flex space-x-2">
                 <div className="relative flex-1">
-                  <Input id="delegate-amount" type="text" value={amount} onChange={handleAmountChange} className="pr-16" placeholder="0.0" />
+                  <Input 
+                    id="delegate-amount" 
+                    type="text" 
+                    value={amount} 
+                    onChange={handleAmountChange} 
+                    className="pr-16 bg-white dark:bg-slate-700 border-slate-300 dark:border-slate-600 text-slate-900 dark:text-white" 
+                    placeholder="0.0" 
+                  />
                   <Button
                     type="button"
                     variant="ghost"
                     size="sm"
-                    className="absolute right-0 top-0 h-full px-3 text-sm font-medium text-blue-600"
+                    className="absolute right-0 top-0 h-full px-3 text-sm font-medium text-blue-600 dark:text-blue-400"
                     onClick={handleMaxClick}
                   >
                     MAX
                   </Button>
                 </div>
-                <Button variant={"outline"}>WETH</Button>
+                <Button variant={"outline"} className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300">WETH</Button>
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label>Select Operator</Label>
+              <Label className="text-slate-700 dark:text-slate-300">Select Operator</Label>
               <RadioGroup value={operator} onValueChange={setOperator} className="space-y-3">
                 {operators.map((op) => (
                   <div
                     key={op.id}
                     className={`flex items-center space-x-3 rounded-lg border p-4 ${
-                      operator === op.id ? "border-blue-500 bg-blue-50" : "border-slate-200"
+                      operator === op.id ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20" : "border-slate-200 dark:border-slate-700"
                     }`}
                   >
                     <RadioGroupItem value={op.id} id={op.id} />
                     <Label htmlFor={op.id} className="flex flex-1 items-center justify-between cursor-pointer">
                       <div className="flex items-center space-x-3">
                         <Avatar className="h-10 w-10">
-                          <AvatarFallback>{op.name.substring(0, 2)}</AvatarFallback>
+                          <AvatarFallback className="bg-slate-100 dark:bg-slate-700">{op.name.substring(0, 2)}</AvatarFallback>
                         </Avatar>
                         <div>
-                          <div className="font-medium">{op.name}</div>
-                          <div className="text-xs text-slate-500">Total Staked: {op.totalStaked}</div>
+                          <div className="font-medium text-slate-900 dark:text-white">{op.name}</div>
+                          <div className="text-xs text-slate-500 dark:text-slate-400">Total Staked: {op.totalStaked}</div>
                         </div>
                       </div>
                       <div className="text-right">
-                        <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                        <Badge variant="outline" className="bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-900/30">
                           APY {op.apy}
                         </Badge>
-                        <div className="text-xs text-slate-500 mt-1">Uptime: {op.uptime}</div>
+                        <div className="text-xs text-slate-500 dark:text-slate-400 mt-1">Uptime: {op.uptime}</div>
                       </div>
                     </Label>
                   </div>
@@ -123,18 +130,18 @@ export function StakeAndDelegateForm() {
               </RadioGroup>
             </div>
 
-            <Card className="bg-blue-50 border-blue-100">
+            <Card className="bg-blue-50 dark:bg-blue-900/10 border-blue-100 dark:border-blue-900/30">
               <CardContent className="p-4 space-y-3">
                 <div className="flex justify-between items-center">
                   <div className="flex items-center gap-2">
-                    <InfoCircle className="h-4 w-4 text-blue-600" />
-                    <span className="text-sm font-medium">Estimated Rewards</span>
+                    <InfoCircle className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                    <span className="text-sm font-medium text-blue-900 dark:text-blue-300">Estimated Rewards</span>
                   </div>
-                  <span className="font-medium">
+                  <span className="font-medium text-blue-900 dark:text-blue-300">
                     {estimatedRewards.toFixed(4)} {token}
                   </span>
                 </div>
-                <div className="flex justify-between text-sm text-slate-600">
+                <div className="flex justify-between text-sm text-slate-600 dark:text-slate-400">
                   <span>APY (with delegation)</span>
                   <span>7.0%</span>
                 </div>
@@ -149,40 +156,40 @@ export function StakeAndDelegateForm() {
       ) : (
         <div className="space-y-6">
           <div className="text-center mb-4">
-            <h3 className="text-lg font-medium">Confirm Staking & Delegation</h3>
-            <p className="text-sm text-slate-600">Please review your details</p>
+            <h3 className="text-lg font-medium text-slate-900 dark:text-white">Confirm Staking & Delegation</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Please review your details</p>
           </div>
 
           <div className="space-y-4">
-            <div className="flex justify-between py-2 border-b border-slate-100">
-              <span className="text-slate-600">Amount</span>
-              <span className="font-medium">
+            <div className="flex justify-between py-2 border-b border-slate-100 dark:border-slate-700">
+              <span className="text-slate-600 dark:text-slate-400">Amount</span>
+              <span className="font-medium text-slate-900 dark:text-white">
                 {amount} {token}
               </span>
             </div>
-            <div className="flex justify-between py-2 border-b border-slate-100">
-              <span className="text-slate-600">Duration</span>
-              <span className="font-medium">{duration} days</span>
+            <div className="flex justify-between py-2 border-b border-slate-100 dark:border-slate-700">
+              <span className="text-slate-600 dark:text-slate-400">Duration</span>
+              <span className="font-medium text-slate-900 dark:text-white">{duration} days</span>
             </div>
-            <div className="flex justify-between py-2 border-b border-slate-100">
-              <span className="text-slate-600">Operator</span>
-              <span className="font-medium">{selectedOperator?.name}</span>
+            <div className="flex justify-between py-2 border-b border-slate-100 dark:border-slate-700">
+              <span className="text-slate-600 dark:text-slate-400">Operator</span>
+              <span className="font-medium text-slate-900 dark:text-white">{selectedOperator?.name}</span>
             </div>
-            <div className="flex justify-between py-2 border-b border-slate-100">
-              <span className="text-slate-600">Estimated Rewards</span>
-              <span className="font-medium">
+            <div className="flex justify-between py-2 border-b border-slate-100 dark:border-slate-700">
+              <span className="text-slate-600 dark:text-slate-400">Estimated Rewards</span>
+              <span className="font-medium text-slate-900 dark:text-white">
                 {estimatedRewards.toFixed(4)} {token}
               </span>
             </div>
-            <div className="flex justify-between py-2 border-b border-slate-100">
-              <span className="text-slate-600">Unlock Date</span>
-              <span className="font-medium">{new Date(Date.now() + duration * 24 * 60 * 60 * 1000).toLocaleDateString()}</span>
+            <div className="flex justify-between py-2 border-b border-slate-100 dark:border-slate-700">
+              <span className="text-slate-600 dark:text-slate-400">Unlock Date</span>
+              <span className="font-medium text-slate-900 dark:text-white">{new Date(Date.now() + duration * 24 * 60 * 60 * 1000).toLocaleDateString()}</span>
             </div>
           </div>
 
           <div className="flex flex-col space-y-2">
             <Button onClick={handleConfirm}>Confirm Staking & Delegation</Button>
-            <Button variant="outline" onClick={() => setStep(1)}>
+            <Button variant="outline" onClick={() => setStep(1)} className="border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300">
               Back to Edit
             </Button>
           </div>

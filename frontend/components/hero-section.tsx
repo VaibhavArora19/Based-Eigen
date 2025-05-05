@@ -32,7 +32,7 @@ export function HeroSection() {
               >
                 Deposit
               </Button>
-              <Button variant="outline" size="lg" className="dark:border-slate-600 dark:text-slate-300" onClick={() => router.push("/deposit")}>
+              <Button variant="outline" size="lg" className="dark:border-slate-600 dark:text-slate-300" onClick={() => router.push("/stake")}>
                 Stake
               </Button>
             </div>

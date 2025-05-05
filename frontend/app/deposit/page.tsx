@@ -306,7 +306,8 @@ export default function DepositPage() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col bg-gray-50 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-white">
+    <div className="min-h-screen w-full flex flex-col bg-gradient-to-b from-white to-blue-50 dark:from-slate-900 dark:to-slate-800 text-slate-900 dark:text-white">
+
       <Header />
       <main className="flex-grow pt-28 pb-20">
         <div className="max-w-md md:max-w-2xl mx-auto px-4">
