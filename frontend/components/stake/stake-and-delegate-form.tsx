@@ -161,10 +161,6 @@ export function StakeAndDelegateForm() {
               </span>
             </div>
             <div className="flex justify-between py-2 border-b border-slate-100">
-              <span className="text-slate-600">Duration</span>
-              <span className="font-medium">{duration} days</span>
-            </div>
-            <div className="flex justify-between py-2 border-b border-slate-100">
               <span className="text-slate-600">Operator</span>
               <span className="font-medium">{selectedOperator?.name}</span>
             </div>

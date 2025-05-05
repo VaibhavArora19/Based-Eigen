@@ -111,10 +111,7 @@ export function StakeForm() {
                 {amount} {token}
               </span>
             </div>
-            <div className="flex justify-between py-2 border-b border-slate-100">
-              <span className="text-slate-600">Duration</span>
-              <span className="font-medium">{duration} days</span>
-            </div>
+
             <div className="flex justify-between py-2 border-b border-slate-100">
               <span className="text-slate-600">Estimated Rewards</span>
               <span className="font-medium">
@@ -122,8 +119,8 @@ export function StakeForm() {
               </span>
             </div>
             <div className="flex justify-between py-2 border-b border-slate-100">
-              <span className="text-slate-600">Unlock Date</span>
-              <span className="font-medium">{new Date(Date.now() + duration * 24 * 60 * 60 * 1000).toLocaleDateString()}</span>
+              <span className="text-slate-600">Estimated APY</span>
+              <span className="font-medium">3.4%</span>
             </div>
           </div>
 
