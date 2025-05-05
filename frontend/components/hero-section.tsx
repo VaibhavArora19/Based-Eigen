@@ -1,12 +1,14 @@
-"use client"
+"use client";
 
 import { Button } from "@/components/ui/button";
 import { usePrivy } from "@privy-io/react-auth";
 import { Shield } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export function HeroSection() {
-  const { login } = usePrivy();
-  
+  // const { login } = usePrivy();
+  const router = useRouter();
+
   return (
     <div className="pt-32 pb-20 md:pt-40 md:pb-28 w-full dark:bg-slate-900 dark:text-white" id="hero">
       <div className="container mx-auto px-4 md:px-6">
@@ -19,14 +21,19 @@ export function HeroSection() {
               Secure your DeFi investments with decentralized claims resolution
             </h1>
             <p className="text-slate-600 dark:text-slate-300 text-lg">
-              DefiShield is a protocol that offers protection against rug pulls and hacks in DeFi. Earn yield on your deposits while having a safety net backed by EigenLayer-secured verification.
+              DefiShield is a protocol that offers protection against rug pulls and hacks in DeFi. Earn yield on your deposits while having a safety
+              net backed by EigenLayer-secured verification.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-600 dark:to-purple-600 text-white" size="lg" onClick={login}>
-                Connect & Deposit
+              <Button
+                className="bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-600 dark:to-purple-600 text-white"
+                size="lg"
+                onClick={() => router.push("/deposit")}
+              >
+                Deposit
               </Button>
-              <Button variant="outline" size="lg" className="dark:border-slate-600 dark:text-slate-300">
-                Learn More
+              <Button variant="outline" size="lg" className="dark:border-slate-600 dark:text-slate-300" onClick={() => router.push("/deposit")}>
+                Stake
               </Button>
             </div>
           </div>

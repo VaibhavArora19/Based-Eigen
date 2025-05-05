@@ -2,14 +2,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { StakeForm } from "@/components/stake/stake-form";
 import { StakeAndDelegateForm } from "@/components/stake/stake-and-delegate-form";
 import { StakingInfo } from "@/components/stake/staking-info";
-import { StakingHeader } from "@/components/stake/staking-header";
+import { Header } from "@/components/header";
 
 export default function StakePage() {
   return (
     <div className="min-h-screen bg-white">
-      <StakingHeader />
+      <Header />
 
-      <main className="container px-4 md:px-6 py-12">
+      <main className="container px-4 md:px-6 py-12 mt-24">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8 text-center">
             <h1 className="text-3xl font-bold tracking-tight mb-2">Stake Your Assets</h1>

@@ -53,25 +53,11 @@ export function StakeAndDelegateForm() {
 
   const operators = [
     {
-      id: "operator1",
-      name: "Alpha Validator",
+      id: "0x3E58925C2d13c67658fe539e5b15bD78F1e57a09",
+      name: "DeFiShield Validator",
       apy: "7.2%",
       totalStaked: "1.2M ETH",
       uptime: "99.98%",
-    },
-    {
-      id: "operator2",
-      name: "Beta Staking",
-      apy: "6.9%",
-      totalStaked: "850K ETH",
-      uptime: "99.95%",
-    },
-    {
-      id: "operator3",
-      name: "Gamma Node",
-      apy: "7.5%",
-      totalStaked: "620K ETH",
-      uptime: "99.92%",
     },
   ];
 
@@ -100,28 +86,7 @@ export function StakeAndDelegateForm() {
                     MAX
                   </Button>
                 </div>
-                <Select value={token} onValueChange={setToken}>
-                  <SelectTrigger className="w-[120px]">
-                    <SelectValue placeholder="Select token" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="ETH">ETH</SelectItem>
-                    <SelectItem value="USDC">USDC</SelectItem>
-                    <SelectItem value="USDT">USDT</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <Label>Staking Duration</Label>
-                <span className="text-sm font-medium">{duration} days</span>
-              </div>
-              <Slider defaultValue={[30]} max={365} min={7} step={1} value={[duration]} onValueChange={handleSliderChange} />
-              <div className="flex justify-between text-xs text-slate-500">
-                <span>7 days</span>
-                <span>1 year</span>
+                <Button variant={"outline"}>WETH</Button>
               </div>
             </div>
 

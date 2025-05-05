@@ -70,28 +70,7 @@ export function StakeForm() {
                     MAX
                   </Button>
                 </div>
-                <Select value={token} onValueChange={setToken}>
-                  <SelectTrigger className="w-[120px]">
-                    <SelectValue placeholder="Select token" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="ETH">ETH</SelectItem>
-                    <SelectItem value="USDC">USDC</SelectItem>
-                    <SelectItem value="USDT">USDT</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <Label>Staking Duration</Label>
-                <span className="text-sm font-medium">{duration} days</span>
-              </div>
-              <Slider defaultValue={[30]} max={365} min={7} step={1} value={[duration]} onValueChange={handleSliderChange} />
-              <div className="flex justify-between text-xs text-slate-500">
-                <span>7 days</span>
-                <span>1 year</span>
+                <Button variant={"outline"}>WETH</Button>
               </div>
             </div>
 
