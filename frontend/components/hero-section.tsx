@@ -1,138 +1,55 @@
-"use client";
+"use client"
 
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef } from "react";
+import { usePrivy } from "@privy-io/react-auth";
+import { Shield } from "lucide-react";
 
 export function HeroSection() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-    canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-
-    const particles: {
-      x: number;
-      y: number;
-      radius: number;
-      color: string;
-      velocity: { x: number; y: number };
-    }[] = [];
-
-    const createParticles = () => {
-      const particleCount = 100;
-
-      for (let i = 0; i < particleCount; i++) {
-        const radius = Math.random() * 2 + 0.5;
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-
-        const color = `rgba(${Math.floor(Math.random() * 100 + 100)}, ${Math.floor(Math.random() * 100 + 100)}, 255, ${Math.random() * 0.5 + 0.5})`;
-
-        const velocity = {
-          x: (Math.random() - 0.5) * 0.2,
-          y: (Math.random() - 0.5) * 0.2,
-        };
-
-        particles.push({ x, y, radius, color, velocity });
-      }
-    };
-
-    const connectParticles = () => {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 120) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(100, 150, 255, ${0.2 * (1 - distance / 120)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-    };
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((particle) => {
-        particle.x += particle.velocity.x;
-        particle.y += particle.velocity.y;
-
-        if (particle.x < 0 || particle.x > canvas.width) {
-          particle.velocity.x = -particle.velocity.x;
-        }
-
-        if (particle.y < 0 || particle.y > canvas.height) {
-          particle.velocity.y = -particle.velocity.y;
-        }
-
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-        ctx.fillStyle = particle.color;
-        ctx.fill();
-      });
-
-      connectParticles();
-    };
-
-    createParticles();
-    animate();
-
-    const handleResize = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
+  const { login } = usePrivy();
+  
   return (
-    <div className="relative min-h-screen flex items-center pt-16">
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
-      <div className="container px-4 md:px-6 relative z-10">
-        <div className="max-w-3xl mx-auto md:mx-0">
-          <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-700 mb-6">Powered by Eigen Layer</div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-6 text-slate-900">
-            Secure Your Assets with Advanced Staking Protection
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-600 mb-8 max-w-2xl">
-            Our protocol leverages Eigen layer staked assets to provide unparalleled security for your funds while maximizing yield potential.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg">Get Started</Button>
-            <Button size="lg" variant="outline">
-              Learn More
-            </Button>
-          </div>
-          <div className="mt-12 flex items-center gap-6">
-            <div className="flex -space-x-2">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="size-8 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 border-2 border-white" />
-              ))}
+    <div className="pt-32 pb-20 md:pt-40 md:pb-28 w-full dark:bg-slate-900 dark:text-white" id="hero">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="flex flex-col md:flex-row items-center gap-12">
+          <div className="md:w-1/2 space-y-6">
+            <div className="inline-block rounded-lg bg-blue-100 dark:bg-blue-900/30 px-3 py-1 text-sm text-blue-700 dark:text-blue-300">
+              DeFi Protection Protocol
             </div>
-            <p className="text-slate-600">
-              <span className="font-bold text-slate-900">1,000+</span> users already protecting their assets
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight dark:text-white">
+              Secure your DeFi investments with decentralized claims resolution
+            </h1>
+            <p className="text-slate-600 dark:text-slate-300 text-lg">
+              DefiShield is a protocol that offers protection against rug pulls and hacks in DeFi. Earn yield on your deposits while having a safety net backed by EigenLayer-secured verification.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button className="bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-600 dark:to-purple-600 text-white" size="lg" onClick={login}>
+                Connect & Deposit
+              </Button>
+              <Button variant="outline" size="lg" className="dark:border-slate-600 dark:text-slate-300">
+                Learn More
+              </Button>
+            </div>
+          </div>
+          <div className="md:w-1/2 flex justify-center">
+            <div className="relative w-full max-w-md aspect-square">
+              <ShieldAnimation />
+            </div>
           </div>
         </div>
       </div>
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
     </div>
   );
 }
+
+// Placeholder for shield animation
+export const ShieldAnimation = () => {
+  return (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="relative">
+        <div className="absolute inset-0 rounded-full bg-blue-500 dark:bg-blue-600 blur-xl opacity-20 animate-pulse" />
+        <Shield size={200} className="text-blue-500 dark:text-blue-400" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 rounded-full bg-purple-500 dark:bg-purple-600 opacity-70 blur-sm animate-ping" />
+      </div>
+    </div>
+  );
+};
